@@ -27,6 +27,31 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li>
+          <a class="navbar-brand"> Welcome <%= current_user.name %>!</a>
+          </li>
+          <li><%= link_to 'Logout', [:logout] %></li>
+        <% else %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+              <span class="text-info"><%= fa_icon 'sign-in', text: 'Login' %></span>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <%= form_tag '/login' do %>
+
+                <li>Email: <%= text_field_tag :email %></li>
+                <li>Password: <%= password_field_tag :password %></li>
+                <li><%= submit_tag "Submit" %></li>
+
+              <% end %>
+
+              <li><%= link_to 'Signup', [:signup] %></li>
+            </ul>
+          </li>
+        <% end %>
        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
@@ -36,6 +61,7 @@
           <ul class="dropdown-menu">
             <li><%= link_to 'Dashboard', [:admin, :root] %></li>
             <li><%= link_to 'Products',  [:admin, :products] %></li>
+            <li><%= link_to 'Categories', [:admin, :categories] %></li>
           </ul>
         </li>
         <li>
