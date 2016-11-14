@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    OrderMailer.receipt_email(@order).deliver_now
   end
 
   def create

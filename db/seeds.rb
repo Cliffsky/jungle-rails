@@ -129,5 +129,43 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+## USERS
+
+User.create({
+  id: 1,
+  name: 'cibc',
+  email: 'cibc@cibc.com',
+  password_digest: "$2a$10$FE56xVeoMFGjEOnGZIKdJezDqnQlKymkSEG4GrbBr6xqrKFHLOJPS"
+})
+
+## REVIEWS
+
+Review.create({
+  user_id: 1,
+  product_id: 1,
+  description: "great fucking flimflam",
+  rating: 5
+})
+
+Review.create({
+  user_id: 1,
+  product_id: 5,
+  description: "wow spectacular jibjib",
+  rating: 5
+})
+
+Review.create({
+  user_id: 1,
+  product_id: 2,
+  description: "i hate this stupid gabblabla",
+  rating: 1
+})
+
+Review.create({
+  user_id: 1,
+  product_id: 1,
+  description: "broken flimflam",
+  rating: 4
+})
 
 puts "DONE!"

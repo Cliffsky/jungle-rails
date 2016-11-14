@@ -22,9 +22,33 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
-        </dl>
+          <dt><h2>Reviews</h2></dt>
+          <dd></dd>
+
+
+      <% @product.reviews.order("updated_at DESC").each do |review| %>
+          <dt>User</dt>
+          <dd><%= User.find(review.user_id).name %></dd>
+          <dt>Rating</dt>
+          <dd><%= review.rating %></dd>
+          <dt>Description</dt>
+          <dd><%= review.description %></dd>
+          <% if current_user && review.user_id == current_user.id %>
+            <dt><%= link_to 'Destroy Review', [review.product, review],
+              method: :delete,
+              data: {confirm: 'Are you sure?'} %></dt>
+          <% end %>
+          <dd></dd>
+
+      <% end %>
+         </dl>
       </div>
     </div>
+
+    <% if current_user %>
+    <h2>Add a review:</h2>
+      <%= render 'reviews/form' %>
+    <% end %>
 
   </article>
 
