@@ -11,6 +11,7 @@ class UsersController < ApplicationController
       redirect_to '/'
     else
       redirect_to '/signup'
+      flash.alert = "Make sure password and password confirmation fields match, and that password is minimum 8 characters long."
     end
   end
 
